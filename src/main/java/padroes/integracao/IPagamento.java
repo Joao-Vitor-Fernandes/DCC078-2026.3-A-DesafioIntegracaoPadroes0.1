@@ -4,4 +4,5 @@ package padroes.integracao;
 public interface IPagamento {
     String getNome();
     double calcularValorFinal(double valor);
+    String processar(double valor);
 }

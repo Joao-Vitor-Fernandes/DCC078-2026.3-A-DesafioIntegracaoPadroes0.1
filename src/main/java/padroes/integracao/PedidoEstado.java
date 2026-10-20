@@ -24,4 +24,8 @@ public abstract class PedidoEstado {
     public boolean cancelar(Pedido pedido) {
         return false;
     }
+
+    public boolean permiteEstorno() {
+        return false;
+    }
 }

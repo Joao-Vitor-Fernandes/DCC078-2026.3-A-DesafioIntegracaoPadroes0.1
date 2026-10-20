@@ -5,8 +5,8 @@ import java.util.Observable;
 // Padrão State + Padrão Observer
 public class Pedido extends Observable {
 
-    private final int numero;
-    private final Venda venda;
+    private int numero;
+    private Venda venda;
     private PedidoEstado estado;
     private IPagamento pagamento;
     private double valorPago;
@@ -36,6 +36,13 @@ public class Pedido extends Observable {
 
     public boolean cancelar() {
         return estado.cancelar(this);
+    }
+
+    public String solicitarEstorno(Funcionario funcionario) {
+        if (!estado.permiteEstorno()) {
+            return "Estorno não permitido: pedido " + estado.getEstado();
+        }
+        return funcionario.aprovar(new Estorno(numero, valorPago));
     }
 
     void setEstado(PedidoEstado novoEstado) {
